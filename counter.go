@@ -34,19 +34,6 @@ func convertToNumber(word string)int {
 	return number
 }
 
-/*func daysBetween(date1 Date, date2 Date)int {
-
-//jos halutaan tietää montako päivää vanha henkilö on, kesken!!!
-	days := date2.Sub(date1).Hours() // 24
-	return days
-}*/
-
-/*func daysTill(x* Date, y* Date) int {
-	calendar := makeCalendar()
-	return 6
-
-}*/
-
 func main() {
 
 	fmt.Println("Let's find out how many dates you have till your birthday. First, tell me your birthday:\nyear-month-date")
@@ -60,35 +47,45 @@ func main() {
 	day := convertToNumber(sdate[2])
 
 	bdDate := makeDate(year, month, day)
-	fmt.Println("BD date:", bdDate)
 
 	now := time.Now()
-	fmt.Println("Now", now)
 
-	// make function from this?
 	datesfrombd := now.Sub(bdDate).Hours()/24
-	fmt.Println("You are",datesfrombd, "days old") //round this
-	fmt.Println("It's still", "days to your birthday")
+	fmt.Printf("You are %.2f days old.\n", datesfrombd)
 
 
-//	var nextbd Date
-//	var datesBetween
+	if bdDate.Month() == now.Month() {
 
-	if  bdDate.Month() < now.Month() {
+		if bdDate.Day() < now.Day() {
+
+		fmt.Println("Your next birthday is next year!")
+                dyear := int(now.Year()) +1
+                next_bd := makeDate(dyear, int(bdDate.Month()), int(bdDate.Day()))
+                datesBetween := next_bd.Sub(now).Hours()/24
+                fmt.Printf("You have about %.2f days till your next birthday.\n", datesBetween)
+
+		} else {
+
+		fmt.Println("Your next birthday is this year!")
+        	next_bd := makeDate(int(now.Year()), int(bdDate.Month()), int(bdDate.Day()))
+        	datesBetween := next_bd.Sub(now).Hours()/24
+        	fmt.Printf("You have about %.2f days till your next birthday.\n", datesBetween)
+		}
+
+	} else if bdDate.Month() < now.Month() {
 
 		fmt.Println("Your next birthday is next year!")
 		dyear := int(now.Year()) +1
 		next_bd := makeDate(dyear, int(bdDate.Month()), int(bdDate.Day()))
 		datesBetween := now.Sub(next_bd).Hours()/24
-		fmt.Println("You have about", datesBetween, "dates till your next birthday")
+		fmt.Printf("You have about %.2f days till your next birthday.66666", datesBetween)
 
-	} 
+	} else { 
 
 	fmt.Println("Your next birthday is this year!")
 	next_bd := makeDate(int(now.Year()), int(bdDate.Month()), int(bdDate.Day()))
-	datesbetween := next_bd.Sub(now).Hours()/24
-	fmt.Println("You have about", datesbetween, "dates till your next birthday")
+	datesBetween := now.Sub(next_bd).Hours()/24
+	fmt.Printf("You have about %.2f days till your next birthday.\n", datesBetween)
 
-
+	}
 }
-
