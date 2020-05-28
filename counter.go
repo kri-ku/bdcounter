@@ -70,7 +70,7 @@ func main() {
         		fmt.Printf("You have about %.2f days till your next birthday.\n", datesBetween)
 		}
 
-	} else if bdDate.Month() < now.Month() {
+	}else if bdDate.Month() < now.Month() {
 
 		fmt.Println("Your next birthday is next year!")
 		dyear := int(now.Year()) +1
