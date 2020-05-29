@@ -80,10 +80,10 @@ func main() {
 
 	} else { 
 
-	fmt.Println("Your next birthday is this year!")
-	next_bd := makeDate(int(now.Year()), int(bdDate.Month()), int(bdDate.Day()))
-	datesBetween := next_bd.Sub(now).Hours()/24
-	fmt.Printf("You have about %.2f days till your next birthday.\n", datesBetween)
+		fmt.Println("Your next birthday is this year!")
+		next_bd := makeDate(int(now.Year()), int(bdDate.Month()), int(bdDate.Day()))
+		datesBetween := next_bd.Sub(now).Hours()/24
+		fmt.Printf("You have about %.2f days till your next birthday.\n", datesBetween)
 
 	}
 }
